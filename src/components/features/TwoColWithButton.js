@@ -44,7 +44,7 @@ export default ({
   subheading = "Our Expertise",
   heading = (
     <>
-      Designed & Developed by <span tw="text-primary-500">Professionals.</span>
+      Meet Our <span tw="text-primary-500">Best Event Planners</span>
     </>
   ),
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -65,10 +65,12 @@ export default ({
   return (
     <Container>
       <TwoColumn>
-        <ImageColumn>
-          <Image css={imageCss} src={imageSrc} imageBorder={imageBorder} imageShadow={imageShadow} imageRounded={imageRounded}/>
-          {imageDecoratorBlob && <DecoratorBlob css={imageDecoratorBlobCss} />}
-        </ImageColumn>
+        {[imageSrc].map((src, index) => (
+          <ImageColumn key={index}>
+            <Image css={imageCss} src={src} imageBorder={imageBorder} imageShadow={imageShadow} imageRounded={imageRounded}/>
+            {imageDecoratorBlob && <DecoratorBlob css={imageDecoratorBlobCss} />}
+          </ImageColumn>
+        ))}
         <TextColumn textOnLeft={textOnLeft}>
           <TextContent>
             <Subheading>{subheading}</Subheading>

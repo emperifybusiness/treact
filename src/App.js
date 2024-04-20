@@ -103,10 +103,12 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import ComponentRenderer from "ComponentRenderer.js";
 import MainLandingPage from "MainLandingPage.js";
 import ThankYouPage from "ThankYouPage.js";
-
+import { PrivateRoutes } from "pages/PrivateRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from 'react';
 import * as feather from 'feather-icons/dist/feather.min';
+import OtherAdmins from "OtherAdmins";
+import BlogIndex from "pages/BlogIndex";
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
   // return <AnimationRevealPage disabled>xxxxxxxxxx</AnimationRevealPage>;
@@ -114,12 +116,19 @@ export default function App() {
   useEffect(() => {
     feather.replace();
   }, []);
+
+
   return (
     <>
       <GlobalStyles />
       <Router>
         <Routes>
           <Route path="/" element={<MainLandingPage />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          
+          <Route element={<PrivateRoutes />}>
+            <Route path="/OtherAdmins" element={<OtherAdmins />} />
+          </Route>
         </Routes>
       </Router>
     </>

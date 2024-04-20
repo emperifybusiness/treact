@@ -39,21 +39,21 @@ export default () => {
   const navLinks = [
     <NavLinks key={1}>
       <NavLink href="#">
-        services
+        Inventory
       </NavLink>
-      <NavLink href="#">
+      <NavLink href="">
         Blog
       </NavLink>
       <NavLink href="#">
         Portfolio
       </NavLink>
       <NavLink href="#">
-        Avout us
+        About us
       </NavLink>
     </NavLinks>,
     <NavLinks key={2}>
-      <PrimaryLink href="/#">
-        Sign Up
+      <PrimaryLink href="https://goadestinationweddings.com">
+        Weddings
       </PrimaryLink>
     </NavLinks>
   ];

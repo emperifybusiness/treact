@@ -3,8 +3,9 @@ import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import Hero from "components/hero/BackgroundAsImageWithCenteredContent.js";
 // import Features from "components/features/ThreeColCenteredStatsPrimaryBackground";
 import Features from "components/features/TwoColSingleFeatureWithStats2";
-import Planner from "components/features/TwoColWithButton";
-import Blog from "components/blogs/ThreeColSimpleWithImage.js";
+import Planner from "components/cards/ProfileThreeColGrid";
+import Gallery from "components/blogs/GridWithFeaturedPost";
+import Blog from "components/blogs/PopularAndRecentBlogPosts";
 import Testimonial from "components/testimonials/TwoColumnWithImage.js";
 import ContactUsForm from "components/forms/SimpleContactUs.js";
 import truss from "./images/trusss.png"
@@ -20,8 +21,9 @@ export default () => (
     </div>
     <Features />
     <Card />
-    <Planner />
+    <Gallery />
     <Blog />
+    <Planner />
     <Testimonial />
     <ContactUsForm />
     <Footer />

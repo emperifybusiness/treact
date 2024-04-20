@@ -4,13 +4,13 @@ import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import {css} from "styled-components/macro"; //eslint-disable-line
-import illustration from "images/login-illustration.svg";
+import illustration from "../images/Untitlasaed-4.png";
 import logo from "images/logo.svg";
 import googleIconImageSrc from "images/google-icon.png";
 import twitterIconImageSrc from "images/twitter-icon.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
-const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`;
+const Container = tw(ContainerBase)`min-h-screen bg-red-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`;
 const LogoLink = tw.a``;
@@ -47,7 +47,7 @@ const SubmitButton = styled.button`
     ${tw`ml-3`}
   }
 `;
-const IllustrationContainer = tw.div`sm:rounded-r-lg flex-1 bg-purple-100 text-center hidden lg:flex justify-center`;
+const IllustrationContainer = tw.div`sm:rounded-r-lg flex-1 bg-white text-center hidden lg:flex justify-center`;
 const IllustrationImage = styled.div`
   ${props => `background-image: url("${props.imageSrc}");`}
   ${tw`m-12 xl:m-16 w-full max-w-sm bg-contain bg-center bg-no-repeat`}
@@ -85,7 +85,7 @@ export default ({
           <MainContent>
             <Heading>{headingText}</Heading>
             <FormContainer>
-              <SocialButtonsContainer>
+              {/* <SocialButtonsContainer>
                 {socialButtons.map((socialButton, index) => (
                   <SocialButton key={index} href={socialButton.url}>
                     <span className="iconContainer">
@@ -94,10 +94,10 @@ export default ({
                     <span className="text">{socialButton.text}</span>
                   </SocialButton>
                 ))}
-              </SocialButtonsContainer>
-              <DividerTextContainer>
+              </SocialButtonsContainer> */}
+              {/* <DividerTextContainer>
                 <DividerText>Or Sign in with your e-mail</DividerText>
-              </DividerTextContainer>
+              </DividerTextContainer> */}
               <Form>
                 <Input type="email" placeholder="Email" />
                 <Input type="password" placeholder="Password" />
@@ -107,14 +107,14 @@ export default ({
                 </SubmitButton>
               </Form>
               <p tw="mt-6 text-xs text-gray-600 text-center">
-                <a href={forgotPasswordUrl} tw="border-b border-gray-500 border-dotted">
-                  Forgot Password ?
+                <a tw="border-b border-gray-500 border-dotted">
+                  Hey Creator! Login With Casant Account
                 </a>
               </p>
               <p tw="mt-8 text-sm text-gray-600 text-center">
                 Dont have an account?{" "}
                 <a href={signupUrl} tw="border-b border-gray-500 border-dotted">
-                  Sign Up
+                  Ask Samuel!
                 </a>
               </p>
             </FormContainer>

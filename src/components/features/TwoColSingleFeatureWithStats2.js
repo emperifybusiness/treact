@@ -25,7 +25,7 @@ const TextContent = tw.div`lg:py-8 text-center md:text-left`;
 const Subheading = tw(SubheadingBase)`text-center text-blue-400 md:text-left`;
 const Heading = tw(
   SectionHeading
-)`mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`;
+)`mt-4 text-blue-800 text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`;
 const Description = tw.p`mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100`;
 
 const Statistics = tw.div`flex flex-col items-center  sm:block text-center md:text-left mt-4`;
@@ -43,7 +43,7 @@ export default ({
   subheading = "Our Track Record",
   heading = (
     <>
-      We have been doing this <wbr /> since <span tw="text-blue-500">1998.</span>
+      Creating best Event experiences <wbr /> since <span tw="text-blue-500">1998</span>
     </>
   ),
   description = "Casant Events has been illuminating celebrations since 1998. With over two decades of experience, we offer tailored lighting, sound, and production services to make your event unforgettable. From weddings to corporate events, trust us to light up your memories. Contact us today!",
