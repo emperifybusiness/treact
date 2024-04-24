@@ -41,7 +41,7 @@ export default () => {
       <NavLink href="#">
         Inventory
       </NavLink>
-      <NavLink href="">
+      <NavLink href="/blogs">
         Blog
       </NavLink>
       <NavLink href="#">

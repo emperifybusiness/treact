@@ -9,7 +9,9 @@ import Footer from "components/footers/FiveColumnWithInputForm.js";
 import { SectionHeading } from "components/misc/Headings";
 import { PrimaryButton } from "components/misc/Buttons";
 import { useEffect } from "react";
-import { fetchDataBlogs, client } from "components/cards/AppwriteData";
+import { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../components/headers/light.js";
+import { fetchDataBlogs } from "components/cards/AppwriteData.js";
+import { useNumber } from './Context.js';
 
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900`;
@@ -44,97 +46,86 @@ const Category = tw.div`uppercase text-primary-500 text-xs font-bold tracking-wi
 const CreationDate = tw.div`mt-4 uppercase text-gray-600 italic font-semibold text-xs`;
 const Title = tw.div`mt-1 font-black text-2xl text-gray-900 group-hover:text-primary-500 transition duration-300`;
 const Description = tw.div``;
-
+const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`
 const ButtonContainer = tw.div`flex justify-center`;
 const LoadMoreButton = tw(PrimaryButton)`mt-16 mx-auto`;
 
 
 const BlogIndex = () => {
-  const [Blogs, setBlogs] = useState([]);
-  const [documents, setDocuments] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const { number } = useNumber();
+  console.log(number);
+  const [Blogs, setBlogs] = useState([])
   useEffect(() => {
     fetchDataBlogs().then(response => {
       setBlogs(response);
     });
   }, []);
-
-  useEffect(() => {
-    client
-      .setEndpoint('https://cloud.appwrite.io/v1') // Replace with your Appwrite endpoint
-      .setProject('661d51c7e4d47fa7d45d') // Replace with your Appwrite project ID
-      .setKey('383ab9a8a79175565b89b08f87130757a87fd7f6ecd3e5bbcb40c9069478f4e562441f048f9ab5b455999b14e245ce3ebc87d03db6e93bbb4f72195f271b11463f547b25ff4ba2d5d5621077e0fe4192de26e4dd193fee64da5cdb17779e894a9c602f05ca627d72f9b912196f72f57f3cf501fd1d237b252bb8775a3678c7a9'); // Replace with your Appwrite API key
-
-    // Fetch all documents from the database
-    client.database.listDocuments('6622c35bd517ac767979')
-      .then((response) => {
-        setDocuments(response.documents);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching documents:', error);
-        setLoading(false);
-      });
-  }, []);
-
+  const navLinks = [
+    <NavLinks key={1}>
+      <NavLink href="#">
+        Inventory
+      </NavLink>
+      <NavLink href="/blogs">
+        Blog
+      </NavLink>
+      <NavLink href="#">
+        Portfolio
+      </NavLink>
+      <NavLink href="#">
+        About us
+      </NavLink>
+    </NavLinks>,
+    <NavLinks key={2}>
+      <PrimaryLink href="https://goadestinationweddings.com">
+        Weddings
+      </PrimaryLink>
+    </NavLinks>
+  ];
   const [visible, setVisible] = useState(7);
-
   const onLoadMoreClick = () => {
     setVisible(v => v + 6);
   };
-  const blogPosts = {
-    headingText: "Authour's Space",
+  const BlogPosts = {
+    headingText: "Blogs",
     posts: [
       ...Blogs
     ]
-  };
+  }
 
-  console.log(Blogs);
-  const BlogsArray = Object.values(blogPosts.posts);
+  const data = BlogPosts.posts[number]
 
-const toggleFeature = (documentId) => {
-  const updatedDocuments = documents.map((doc) => {
-    if (doc.$id === documentId) {
-      const updatedDoc = { ...doc, feature: !doc.feature };
-      // Update the feature value in the database
-      client.database.updateDocument('6622c35bd517ac767979', documentId, {
-        feature: updatedDoc.feature
-      })
-        .then(() => {
-          console.log(`Feature toggled for document ${documentId}`);
-        })
-        .catch((error) => {
-          console.error(`Error toggling feature for document ${documentId}:`, error);
-        });
-      return updatedDoc;
-    }
-    return doc;
-  });
-  setDocuments(updatedDocuments);
-};
+
+  // const imageSrc = data.imageSrc;
+  // const category = data.category;
+  // const date = data.date;
+  // const title = data.title;
+  // const description = data.description
+
+
   return (
     <AnimationRevealPage>
       <Header />
       <Container >
         <ContentWithPaddingXl>
           <HeadingRow>
-            <Heading>{blogPosts.headingText}</Heading>
+            <Heading>{BlogPosts.headingText}</Heading>
           </HeadingRow>
-          <Posts onClick={() => toggleFeature(doc.$id)} >
-            {BlogsArray.slice(0, visible).map((post, index) => (
-              <PostContainer key={index} featured={post.featured}>
+          <Posts >
+            {data && data.imageSrc && (
+              <PostContainer featured={data.featured = true}>
                 <Post className="group" >
-                  <Image style={{ borderRadius: "20px" }} imageSrc={post.imageSrc} />
+                  <Image style={{ borderRadius: "20px" }} imageSrc={data.imageSrc} />
                   <Info style={{ padding: "0", marginTop: "50px", }}>
-                    <Category>{post.category}</Category>
-                    <CreationDate>{post.date}</CreationDate>
-                    <Title>{post.title}</Title>
-                    {post.openBlog && post.description && <Description>{post.description}</Description>}
+                    <Category>{data.category}</Category>
+                    <CreationDate>{new Intl.DateTimeFormat('en-IN', {
+                        year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
+                      }).format(new Date(data.date))}</CreationDate>
+                    <Title>{data.title}</Title>
+                    <Description>{data.description}</Description>
                   </Info>
                 </Post>
               </PostContainer>
-            ))}
+            )}
           </Posts>
 
         </ContentWithPaddingXl>

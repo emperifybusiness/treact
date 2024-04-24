@@ -109,6 +109,10 @@ import { useEffect } from 'react';
 import * as feather from 'feather-icons/dist/feather.min';
 import OtherAdmins from "OtherAdmins";
 import BlogIndex from "pages/BlogIndex";
+import Blogs from "pages/Blogs";
+import BlogPoster from "pages/BlogPoster";
+import BlogsEdit from "pages/BlogsEdit";
+
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
   // return <AnimationRevealPage disabled>xxxxxxxxxx</AnimationRevealPage>;
@@ -125,9 +129,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MainLandingPage />} />
           <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blogs" element={<Blogs />} />
           
           <Route element={<PrivateRoutes />}>
-            <Route path="/OtherAdmins" element={<OtherAdmins />} />
+            <Route path="/postreqhandlerAdmin" element={<BlogPoster />} />
+            <Route path="/BlogseditAdmin" element={<BlogsEdit />} />
           </Route>
         </Routes>
       </Router>

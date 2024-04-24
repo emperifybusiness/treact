@@ -1,17 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro";
+import { Link } from "react-router-dom";
 import Header from "components/headers/light.js";
 import Footer from "components/footers/FiveColumnWithInputForm.js";
 import { SectionHeading } from "components/misc/Headings";
 import { PrimaryButton } from "components/misc/Buttons";
-
+import { fetchDataBlogs } from "components/cards/AppwriteData";
+import { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../components/headers/light.js";
+import { useNumber } from './Context';
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900`;
 const Posts = tw.div`mt-6 sm:-mr-8 flex flex-wrap`;
+const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`
+const StyledHeader = styled(Header)`
+  ${tw`max-w-none w-full`}
+  ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
+    ${tw``}
+  }
+  ${NavToggle}.closed {
+    ${tw`text-gray-100 hover:text-primary-500`}
+  }
+`;
 const PostContainer = styled.div`
   ${tw`mt-10 w-full sm:w-1/2 lg:w-1/3 sm:pr-8`}
   ${props =>
@@ -46,68 +59,85 @@ const Description = tw.div``;
 const ButtonContainer = tw.div`flex justify-center`;
 const LoadMoreButton = tw(PrimaryButton)`mt-16 mx-auto`;
 
-export default ({
-  headingText = "Blog Posts",
-  posts = [
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-      category: "Travel Tips",
-      date: "April 21, 2020",
-      title: "Safely Travel in Foreign Countries",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      url: "https://timerse.com",
-      featured: true
-    },
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost()
-  ]
-}) => {
+
+const Blogs = () => {
+  const { updateNumber } = useNumber();
+  console.log(updateNumber);
+  const handleClick = (index) => {
+    updateNumber(index);
+  };
+
+
+
+  const navLinks = [
+    <NavLinks key={1}>
+      <NavLink href="#">
+        Inventory
+      </NavLink>
+      <NavLink href="/blogs">
+        Blog
+      </NavLink>
+      <NavLink href="#">
+        Portfolio
+      </NavLink>
+      <NavLink href="#">
+        About us
+      </NavLink>
+    </NavLinks>,
+    <NavLinks key={2}>
+      <PrimaryLink href="https://goadestinationweddings.com">
+        Weddings
+      </PrimaryLink>
+    </NavLinks>
+  ];
   const [visible, setVisible] = useState(7);
   const onLoadMoreClick = () => {
     setVisible(v => v + 6);
-  };
+  }
+  const [AllBlogs, setAllBlogs] = useState([])
+  useEffect(() => {
+    fetchDataBlogs().then(response => {
+      setAllBlogs(response);
+    });
+  }, []);
+  const Blogs = {
+    headingText: "Blog Posts",
+    posts: [
+      ...AllBlogs
+    ]
+  }
+  const data = Blogs.posts;
   return (
     <AnimationRevealPage>
-      <Header />
+      <StyledHeader links={navLinks} />
       <Container>
         <ContentWithPaddingXl>
           <HeadingRow>
-            <Heading>{headingText}</Heading>
+            <Heading>{Blogs.headingText}</Heading>
           </HeadingRow>
-          <Posts>
-            {posts.slice(0, visible).map((post, index) => (
-              <PostContainer key={index} featured={post.featured}>
-                <Post className="group" as="a" href={post.url}>
-                  <Image imageSrc={post.imageSrc} />
-                  <Info>
-                    <Category>{post.category}</Category>
-                    <CreationDate>{post.date}</CreationDate>
-                    <Title>{post.title}</Title>
-                    {post.featured && post.description && <Description>{post.description}</Description>}
-                  </Info>
-                </Post>
-              </PostContainer>
-            ))}
-          </Posts>
-          {visible < posts.length && (
+          <Link to="/blog">
+            <Posts>
+              {data.map((post, index) => (
+                <PostContainer onClick={() => handleClick(index)} key={index} featured={post.featured}>
+                  <Post className="group" as="a" href={post.url}>
+                    <Image imageSrc={post.imageSrc} />
+                    <Info>
+                      <Category>{post.category}</Category>
+                      <CreationDate>{new Intl.DateTimeFormat('en-IN', {
+                        year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
+                      }).format(new Date(post.date))}</CreationDate>
+                      <Title>{post.title.substring(0, 20) + "..."}</Title>
+                      <Description>{post.description.substring(0,150)+ "..."}</Description>
+                      {post.featured && post.description &&
+                        <Description >{post.description.substring(0, 200) + "..."}...</Description>}
+                    </Info>
+                  </Post>
+                </PostContainer>
+
+              ))}
+            </Posts>
+          </Link>
+          {visible < data.length && (
             <ButtonContainer>
               <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
             </ButtonContainer>
@@ -116,16 +146,8 @@ export default ({
       </Container>
       <Footer />
     </AnimationRevealPage>
-  );
-};
+  )
+}
 
-const getPlaceholderPost = () => ({
-  imageSrc:
-    "https://images.unsplash.com/photo-1418854982207-12f710b74003?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-  category: "Travel Guide",
-  date: "April 19, 2020",
-  title: "Visit the beautiful Alps in Switzerland",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  url: "https://reddit.com"
-});
+export default Blogs
+
