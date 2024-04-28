@@ -1,5 +1,5 @@
 
-import { Client, Databases, Account  } from "appwrite";
+import { Client, Databases, Account ,Query  } from "appwrite";
 
 export const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
@@ -12,7 +12,40 @@ export const fetchDataInventory = async () => {
     try {
         const response = await databases.listDocuments(
             "661d520b2995308dacf5",
-            "661d5216a2c20493387a"
+            "661d5216a2c20493387a",
+            [
+                Query.equal('category', ["sound"])
+            ]
+        );
+        return response.documents;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+export const fetchDataInventoryLights = async () => {
+    try {
+        const response = await databases.listDocuments(
+            "661d520b2995308dacf5",
+            "661d5216a2c20493387a",
+            [
+                Query.equal('category', ["lights"])
+            ]
+        );
+        return response.documents;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+export const fetchDataInventoryProduction = async () => {
+    try {
+        const response = await databases.listDocuments(
+            "661d520b2995308dacf5",
+            "661d5216a2c20493387a",
+            [
+                Query.equal('category', ["production"])
+            ]
         );
         return response.documents;
     } catch (error) {
@@ -59,3 +92,5 @@ export const fetchDataBlogs = async () => {
         return [];
     }
 };
+
+

@@ -112,6 +112,10 @@ import BlogIndex from "pages/BlogIndex";
 import Blogs from "pages/Blogs";
 import BlogPoster from "pages/BlogPoster";
 import BlogsEdit from "pages/BlogsEdit";
+import BlogsUpdate from "pages/BlogsUpdate";
+import InventoryEdit from "pages/InventoryEdit";
+import InventoryPost from "pages/InventoryPost";
+import InventoryUpdate from "pages/InventoryUpdate";
 
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
@@ -134,6 +138,10 @@ export default function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/postreqhandlerAdmin" element={<BlogPoster />} />
             <Route path="/BlogseditAdmin" element={<BlogsEdit />} />
+            <Route path="/BlogseditAdmin/BlogsUpdate" element={<BlogsUpdate />} />
+            <Route path="/InventoryAdmin" element={<InventoryEdit />} />
+            <Route path="/InventoryPost" element={<InventoryPost />} />
+            <Route path="/InventoryAdmin/InventoryUpdate" element={<InventoryUpdate />} />
           </Route>
         </Routes>
       </Router>
