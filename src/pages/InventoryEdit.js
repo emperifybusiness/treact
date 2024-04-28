@@ -74,29 +74,28 @@ const InventoryEdit = () => {
     const [Data, setData] = useState([])
     const [dataLights, setDataLights] = useState([])
     const [dataProduction, setDataProduction] = useState([])
-
+    const [refresh, setRefresh] = useState("")
     const handleDelete = async (id) => {
         const promise = databases.deleteDocument('661d520b2995308dacf5', '661d5216a2c20493387a', id);
     }
-
 
     useEffect(() => {
         fetchDataInventory().then(response => {
             setData(response);
         });
-    }, []);
+    }, [handleDelete]);
     
     useEffect(() => {
         fetchDataInventoryLights().then(response => {
             setDataLights(response);
         });
-    }, []);
+    }, [handleDelete]);
 
     useEffect(() => {
         fetchDataInventoryProduction().then(response => {
             setDataProduction(response);
         });
-    }, []);
+    }, [handleDelete]);
 
     console.log(dataLights);
 

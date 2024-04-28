@@ -3,8 +3,8 @@ import { Client, Storage, Databases, ID } from "appwrite";
 import React, { useState, useEffect } from 'react'
 import jquery from 'jquery';
 import { MdOutlineDoneOutline } from "react-icons/md";
-import { fetchDataInventory } from 'components/cards/AppwriteData';
 import { useNumber } from './Context';
+
 
 const InventoryUpdate = () => {
 
