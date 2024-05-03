@@ -97,9 +97,7 @@ const InventoryEdit = () => {
         });
     }, [handleDelete]);
 
-    console.log(dataLights);
 
-    console.log(Data);
     const Inventory = {
         heading: "Our Inventory",
         tabs: {

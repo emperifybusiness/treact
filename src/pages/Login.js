@@ -1,25 +1,29 @@
-import React from "react";
+
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
-import {css} from "styled-components/macro"; //eslint-disable-line
-import illustration from "../images/Untitlasaed-4.png";
+import { useNavigate } from 'react-router-dom'
+import { React, useState , useEffect } from 'react'
+import { css } from "styled-components/macro"; //eslint-disable-line
 import logo from "images/logo.svg";
 import googleIconImageSrc from "images/google-icon.png";
 import twitterIconImageSrc from "images/twitter-icon.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
+import { Client , Account } from "appwrite";
+import {useNumber} from './Context' 
 
-const Container = tw(ContainerBase)`min-h-screen bg-red-900 text-white font-medium flex justify-center -m-8`;
+const Container = tw(ContainerBase)`min-h-screen bg-red-200 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`;
-const LogoLink = tw.a``;
-const LogoImage = tw.img`h-12 mx-auto`;
+const LogoLink = tw.a`flex items-center`;
+const LogoImage = tw.img`h-12 mr-2`;
 const MainContent = tw.div`mt-12 flex flex-col items-center`;
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
 const FormContainer = tw.div`w-full flex-1 mt-8`;
 
 const SocialButtonsContainer = tw.div`flex flex-col items-center`;
+
 const SocialButton = styled.a`
   ${tw`w-full max-w-xs font-semibold rounded-lg py-3 border text-gray-900 bg-gray-100 hocus:bg-gray-200 hocus:border-gray-400 flex items-center justify-center transition-all duration-300 focus:outline-none focus:shadow-outline text-sm mt-5 first:mt-0`}
   .iconContainer {
@@ -53,59 +57,98 @@ const IllustrationImage = styled.div`
   ${tw`m-12 xl:m-16 w-full max-w-sm bg-contain bg-center bg-no-repeat`}
 `;
 
-export default ({
-  logoLinkUrl = "#",
-  illustrationImageSrc = illustration,
-  headingText = "Sign In To Treact",
-  socialButtons = [
-    {
-      iconImageSrc: googleIconImageSrc,
-      text: "Sign In With Google",
-      url: "https://google.com"
-    },
-    {
-      iconImageSrc: twitterIconImageSrc,
-      text: "Sign In With Twitter",
-      url: "https://twitter.com"
-    }
-  ],
-  submitButtonText = "Sign In",
-  SubmitButtonIcon = LoginIcon,
-  forgotPasswordUrl = "#",
-  signupUrl = "#",
 
-}) => (
-  <AnimationRevealPage>
-    <Container>
-      <Content>
-        <MainContainer>
-          <LogoLink href={logoLinkUrl}>
-            <LogoImage src={logo} />
-          </LogoLink>
-          <MainContent>
-            <Heading>{headingText}</Heading>
-            <FormContainer>
-              {/* <SocialButtonsContainer>
-                {socialButtons.map((socialButton, index) => (
-                  <SocialButton key={index} href={socialButton.url}>
-                    <span className="iconContainer">
-                      <img src={socialButton.iconImageSrc} className="icon" alt=""/>
-                    </span>
-                    <span className="text">{socialButton.text}</span>
-                  </SocialButton>
-                ))}
-              </SocialButtonsContainer> */}
-              {/* <DividerTextContainer>
-                <DividerText>Or Sign in with your e-mail</DividerText>
-              </DividerTextContainer> */}
-              <Form>
-                <Input type="email" placeholder="Email" />
-                <Input type="password" placeholder="Password" />
-                <SubmitButton type="submit">
-                  <SubmitButtonIcon className="icon" />
-                  <span className="text">{submitButtonText}</span>
-                </SubmitButton>
-              </Form>
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { updateUser } = useNumber();
+  const [userState, setUserState] = useState([]);
+  const navigate = useNavigate();
+  const client = new Client()
+    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+    .setProject('661d51c7e4d47fa7d45d');                 // Your project ID
+
+  const account = new Account(client);
+
+
+  const handleLogin = async () => {
+    try {
+      const response = await account.createEmailPasswordSession(email, password);
+      console.log("User logged in:", response);
+      setUserState(response.current)
+      return response;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [];
+    }
+  };
+
+useEffect (() => {
+  const fetchUser = async () => {
+    try {
+      const result = await account.getSession("current");
+      console.log(result.current);
+      setUserState(result)
+    } catch (error) {
+      throw error
+    }
+  }
+  fetchUser()
+}, [])
+
+
+  
+
+updateUser(userState);
+
+
+  const login = {
+    logoLinkUrl: "#",
+    illustrationImageSrc: "images/Untitlasaed-4.png",
+    headingText: "Sign In To Casant Admin",
+    socialButtons: [
+      {
+        iconImageSrc: googleIconImageSrc,
+        text: "Sign In With Google",
+        url: "https://google.com"
+      },
+      {
+        iconImageSrc: twitterIconImageSrc,
+        text: "Sign In With Twitter",
+        url: "https://twitter.com"
+      }
+    ],
+    submitButtonText: "Sign In",
+    SubmitButtonIcon: LoginIcon,
+    forgotPasswordUrl: "#",
+    signupUrl: "#",
+  }
+
+  const deleteSessions = async () => {
+    const promise = await account.deleteSessions();
+    localStorage.clear();
+    if (promise) {
+      alert("deleted session");
+    }
+  }
+  return (
+    <AnimationRevealPage>
+      <Container>
+        <Content>
+          <MainContainer>
+            <LogoLink href={login.logoLinkUrl}>
+              <LogoImage src={logo} />
+            </LogoLink>
+            <MainContent>
+              <Heading>{login.headingText}</Heading>
+
+
+              <Input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+              <Input type="password" autoComplete="current-password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+              <SubmitButton type="submit" onClick={handleLogin}>
+                <span className="text">{login.submitButtonText}</span>
+              </SubmitButton>
+
               <p tw="mt-6 text-xs text-gray-600 text-center">
                 <a tw="border-b border-gray-500 border-dotted">
                   Hey Creator! Login With Casant Account
@@ -113,17 +156,21 @@ export default ({
               </p>
               <p tw="mt-8 text-sm text-gray-600 text-center">
                 Dont have an account?{" "}
-                <a href={signupUrl} tw="border-b border-gray-500 border-dotted">
+                <a onClick={deleteSessions}  tw="border-b border-gray-500 border-dotted cursor-pointer">
                   Ask Samuel!
                 </a>
               </p>
-            </FormContainer>
-          </MainContent>
-        </MainContainer>
-        <IllustrationContainer>
-          <IllustrationImage imageSrc={illustrationImageSrc} />
-        </IllustrationContainer>
-      </Content>
-    </Container>
-  </AnimationRevealPage>
-);
+
+            </MainContent>
+          </MainContainer>
+          <IllustrationContainer>
+            <IllustrationImage imageSrc={login.illustrationImageSrc} />
+          </IllustrationContainer>
+        </Content>
+      </Container>
+    </AnimationRevealPage>
+  )
+}
+
+export default Login
+

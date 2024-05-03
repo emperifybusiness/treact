@@ -12,6 +12,8 @@ import { PrimaryButton } from "components/misc/Buttons";
 import { fetchDataBlogs } from "components/cards/AppwriteData";
 import { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../components/headers/light.js";
 import { useNumber } from './Context';
+import parse from 'html-react-parser';
+
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900`;
 const Posts = tw.div`mt-6 sm:-mr-8 flex flex-wrap`;
@@ -71,16 +73,16 @@ const Blogs = () => {
 
   const navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">
+      <NavLink href="/Inventory">
         Inventory
       </NavLink>
       <NavLink href="/blogs">
         Blog
       </NavLink>
-      <NavLink href="#">
-        Portfolio
+      <NavLink href="/gallery">
+        Gallery
       </NavLink>
-      <NavLink href="#">
+      <NavLink href="/AboutUs">
         About us
       </NavLink>
     </NavLinks>,
@@ -107,8 +109,10 @@ const Blogs = () => {
     ]
   }
   const data = Blogs.posts;
+
+
   return (
-    <AnimationRevealPage>
+    <AnimationRevealPage> 
       <StyledHeader links={navLinks} />
       <Container>
         <ContentWithPaddingXl>
@@ -127,9 +131,8 @@ const Blogs = () => {
                         year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
                       }).format(new Date(post.date))}</CreationDate>
                       <Title>{post.title.substring(0, 20) + "..."}</Title>
-                      <Description>{post.description.substring(0,150)+ "..."}</Description>
-                      {post.featured && post.description &&
-                        <Description >{post.description.substring(0, 200) + "..."}...</Description>}
+                      {
+                        <Description className="text-xl" >{parse(post.description.substring(0,100))}...</Description>}
                     </Info>
                   </Post>
                 </PostContainer>

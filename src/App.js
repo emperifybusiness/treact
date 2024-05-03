@@ -102,8 +102,7 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import ComponentRenderer from "ComponentRenderer.js";
 import MainLandingPage from "MainLandingPage.js";
-import ThankYouPage from "ThankYouPage.js";
-import { PrivateRoutes } from "pages/PrivateRoutes";
+import { PrivateRoutes } from "PrivateRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from 'react';
 import * as feather from 'feather-icons/dist/feather.min';
@@ -116,15 +115,23 @@ import BlogsUpdate from "pages/BlogsUpdate";
 import InventoryEdit from "pages/InventoryEdit";
 import InventoryPost from "pages/InventoryPost";
 import InventoryUpdate from "pages/InventoryUpdate";
+import Login from "pages/Login";
+import { useNumber } from "pages/Context";
+import InventorySection from "components/hero/InventorySection";
+import AboutUs from "pages/AboutUs";
+import GallerySection from "GallerySection";
+import GalleryPoster from "pages/GalleryPoster";
+import GalleryEdit from "pages/GalleryEdit";
+import GalleryUpdate from "pages/GalleryUpdate";
+
+export const userinfo = JSON.parse(localStorage.getItem("user"));
 
 export default function App() {
-  // If you want to disable the animation just use the disabled `prop` like below on your page's component
-  // return <AnimationRevealPage disabled>xxxxxxxxxx</AnimationRevealPage>;
 
+  const { user } = useNumber();
   useEffect(() => {
     feather.replace();
   }, []);
-
 
   return (
     <>
@@ -132,17 +139,24 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainLandingPage />} />
+          <Route path="/Inventory" element={<InventorySection />} />
           <Route path="/blog" element={<BlogIndex />} />
           <Route path="/blogs" element={<Blogs />} />
-          
-          <Route element={<PrivateRoutes />}>
-            <Route path="/postreqhandlerAdmin" element={<BlogPoster />} />
-            <Route path="/BlogseditAdmin" element={<BlogsEdit />} />
-            <Route path="/BlogseditAdmin/BlogsUpdate" element={<BlogsUpdate />} />
-            <Route path="/InventoryAdmin" element={<InventoryEdit />} />
-            <Route path="/InventoryPost" element={<InventoryPost />} />
-            <Route path="/InventoryAdmin/InventoryUpdate" element={<InventoryUpdate />} />
-          </Route>
+          <Route path="/gallery" element={<GallerySection />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+
+          {/* <Route element={<PrivateRoutes/>}> */}
+          <Route path="/admin" element={<BlogPoster />} />
+          <Route path="/GalleryEdit" element={<GalleryEdit />} />
+          <Route path="/GalleryPoster" element={<GalleryPoster />} />
+          <Route path="/GalleryEdit/GalleryUpdate" element={<GalleryUpdate />} />
+          <Route path="/BlogseditAdmin" element={<BlogsEdit />} />
+          <Route path="/BlogseditAdmin/BlogsUpdate" element={<BlogsUpdate />} />
+          <Route path="/InventoryAdmin" element={<InventoryEdit />} />
+          <Route path="/InventoryPost" element={<InventoryPost />} />
+          <Route path="/InventoryAdmin/InventoryUpdate" element={<InventoryUpdate />} />
+          {/* </Route> */}
         </Routes>
       </Router>
     </>

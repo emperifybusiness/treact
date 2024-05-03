@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react'
+import "./Inventory.css";
 import tw from "twin.macro";
 import styled from "styled-components";
+import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 import { css } from "styled-components/macro"; //eslint-disable-line
-
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
+import InventoryCard from 'components/cards/InventoryCard';
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
@@ -35,44 +37,48 @@ const Heading = styled.h1`
 
 const PrimaryAction = tw.button`rounded-full px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 font-bold shadow transition duration-300 bg-blue-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:outline-none focus:shadow-outline`;
 
-export default () => {
-  
-  const navLinks = [
-    <NavLinks key={1}>
-      <NavLink href="/Inventory">
-        Inventory
-      </NavLink>
-      <NavLink href="/blogs">
-        Blog
-      </NavLink>
-      <NavLink href="/gallery">
-        Gallery
-      </NavLink>
-      <NavLink href="/AboutUs">
-        About us
-      </NavLink>
-    </NavLinks>,
-    <NavLinks key={2}>
-      <PrimaryLink href="https://goadestinationweddings.com">
-        Weddings
-      </PrimaryLink>
-    </NavLinks>
-  ];
+const InventorySection = () => {
+    const navLinks = [
+        <NavLinks key={1}>
+            <NavLink href="/Inventory">
+                Inventory
+            </NavLink>
+            <NavLink href="/blogs">
+                Blog
+            </NavLink>
+            <NavLink href="/gallery">
+               Gallery
+            </NavLink>
+            <NavLink href="/AboutUs">
+                About us
+            </NavLink>
+        </NavLinks>,
+        <NavLinks key={2}>
+            <PrimaryLink href="https://goadestinationweddings.com">
+                Weddings
+            </PrimaryLink>
+        </NavLinks>
+    ];
 
-  return (
-    <Container>
-      <OpacityOverlay />
-      <HeroContainer>
-        <StyledHeader links={navLinks} />
-        <Content>
-          <Heading>
-              PLAN YOUR EVENTS
-              <br />
-              WITH US
-          </Heading>
-          <PrimaryAction>GET QUOTE</PrimaryAction>
-        </Content>
-      </HeroContainer>
-    </Container>
-  );
-};
+    return (
+        <AnimationRevealPage>
+        <Container>
+            <OpacityOverlay />
+            <HeroContainer>
+                <StyledHeader links={navLinks} />
+                <Content>
+                    <Heading>
+                        EVERYTHING YOU NEED
+                        <br />
+                        AT ONE PLACE
+                    </Heading>
+                    <PrimaryAction>GET QUOTE</PrimaryAction>
+                </Content>
+            </HeroContainer>
+        </Container>
+        <InventoryCard />
+        </AnimationRevealPage>
+    )
+}
+
+export default InventorySection

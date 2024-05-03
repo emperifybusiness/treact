@@ -65,7 +65,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 `;
 
 
-const TabCardGrid = () => {
+const InventoryCard = () => {
   const [Data, setData] = useState([])
   const [dataLights, setDataLights] = useState([])
   const [dataProduction, setDataProduction] = useState([])
@@ -140,7 +140,7 @@ const TabCardGrid = () => {
             initial={activeTab === tabKey ? "current" : "hidden"}
             animate={activeTab === tabKey ? "current" : "hidden"}
           >
-            {tabs[tabKey].slice(0, 8).map((card, index) => (
+            {tabs[tabKey].map((card, index) => (
               <CardContainer key={index}>
                 <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
                   <CardImageContainer imageSrc={card.imageSrc}>
@@ -182,4 +182,4 @@ const TabCardGrid = () => {
     </Container>
   )
 }
-export default TabCardGrid
+export default InventoryCard

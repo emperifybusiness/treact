@@ -3,7 +3,6 @@ import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import styled from "styled-components"; //eslint-disable-line
 import { css } from "styled-components/macro"; //eslint-disable-line
-import Header from "components/headers/light.js";
 import Footer from "components/footers/FiveColumnWithInputForm.js";
 import MainFeature1 from "components/features/TwoColWithButton.js";
 // import MainFeature2 from "components/features/TwoColSingleFeatureWithStats.js";
@@ -11,16 +10,42 @@ import MainFeature1 from "components/features/TwoColWithButton.js";
 import Features from "components/features/ThreeColSimple.js";
 // import Features from "components/features/ThreeColWithSideImage.js";
 import TeamCardGrid from "components/cards/ProfileThreeColGrid.js";
-
+import HeaderBase, { NavLinks, NavLink, PrimaryLink } from "components/headers/light.js";
 import SupportIconImage from "images/support-icon.svg";
 import ShieldIconImage from "images/shield-icon.svg";
 import CustomerLoveIconImage from "images/simple-icon.svg";
-
+const Header = tw(HeaderBase)`max-w-none`;
 const Subheading = tw.span`uppercase tracking-wider text-sm`;
 export default () => {
+  const button = {
+    buttonRounded : true
+  }
+  const buttonRoundedCss = button.buttonRounded && tw`rounded-full`;
+  const navLinks = [
+    <NavLinks key={1}>
+    <NavLink href="/Inventory">
+        Inventory
+    </NavLink>
+    <NavLink href="/blogs">
+        Blog
+    </NavLink>
+    <NavLink href="/gallery">
+        Gallery
+    </NavLink>
+    <NavLink href="/AboutUs">
+        About us
+    </NavLink>
+</NavLinks>,
+<NavLinks key={2}>
+    <PrimaryLink href="https://goadestinationweddings.com">
+        Weddings
+    </PrimaryLink>
+</NavLinks>
+];
+    
   return (
     <AnimationRevealPage>
-      <Header />
+      <Header links={navLinks} />
       <MainFeature1
         subheading={<Subheading>About Treact</Subheading>}
         heading="We are a modern design agency."

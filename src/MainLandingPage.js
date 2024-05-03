@@ -6,8 +6,8 @@ import Features from "components/features/TwoColSingleFeatureWithStats2";
 import Planner from "components/cards/ProfileThreeColGrid";
 import Gallery from "components/blogs/GridWithFeaturedPost";
 import Blog from "components/blogs/PopularAndRecentBlogPosts";
-import Testimonial from "components/testimonials/TwoColumnWithImage.js";
-import ContactUsForm from "components/forms/SimpleContactUs.js";
+import Testimonial from "components/testimonials/ThreeColumnWithProfileImage";
+import ContactUsForm from "components/forms/TwoColContactUsWithIllustration";
 import truss from "./images/trusss.png"
 import Card from "components/cards/TabCardGrid";
 import Footer from "components/footers/SimpleFiveColumn.js";

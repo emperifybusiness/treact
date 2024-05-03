@@ -2,13 +2,22 @@ import React , {useState} from 'react'
 import { MdOutlinePostAdd , MdManageAccounts, MdInventory  } from "react-icons/md";
 import { FaBox } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { Client, Account } from "appwrite"; 
+import { FaFileImage } from "react-icons/fa";
+import { RiImageAddFill } from "react-icons/ri";
 const Sidebar = () => {
-    const [active, setActive] = useState(false);
+const client = new Client();
+const account = new Account(client);
+const [active, setActive] = useState(false);
+
     const features = [
-        {name: "Blog Poster", icon : <MdOutlinePostAdd color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/postreqhandlerAdmin"},
+        {name: "Blog Poster", icon : <MdOutlinePostAdd color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/admin"},
         {name: "Blog manager", icon : <MdManageAccounts color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/BlogseditAdmin"},
         {name: "Inventory", icon : <MdInventory color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} />, routing : "/InventoryAdmin"},
-        {name: "Inventory Post", icon : <FaBox color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/InventoryPost"}
+        {name: "Inventory Post", icon : <FaBox color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/InventoryPost"},
+        {name: "Gallery Edit", icon : <FaFileImage color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/GalleryEdit"},
+        {name: "Event Planners", icon : <RiImageAddFill color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/GalleryPoster"},
+        {name: "Gallery Post", icon : <RiImageAddFill color='rgb(99 179 237 / var(--tw-bg-opacity))' className='m-5' size={30} /> , routing : "/GalleryPoster"}
     ]
     return (
         <div className=" py-3 px-3 w-56 bg-white shadow-lg h-screen">
@@ -23,6 +32,7 @@ const Sidebar = () => {
                 </Link>
             ))}
             </div>
+
         </div>
     )
 }

@@ -3,52 +3,34 @@ import { Client, Storage, Databases, ID } from "appwrite";
 import React, { useState, useEffect } from 'react'
 import jquery from 'jquery';
 import { MdOutlineDoneOutline } from "react-icons/md";
-import { fetchDataBlogs } from 'components/cards/AppwriteData';
+import { fetchDataGallery } from 'components/cards/AppwriteData';
 import { useNumber } from './Context';
 import parse from 'html-react-parser';
-const BlogsUpdate = () => {
-    const [FeatureValue, setFeatureValue] = useState();
+const GalleryUpdate = () => {
     const [ModalDisplay, setModalDisplay] = useState(false);
     const [blogUpdate, setBlogUpdate] = useState([]);
-    const { editID } = useNumber();
+    const { galleryPostId } = useNumber();
 
     useEffect(() => {
-        fetchDataBlogs().then(response => {
+        fetchDataGallery().then(response => {
             setBlogUpdate(response);
         });
     }, []);
 
-    const { imageSrc: imagePrev, title: titlePrev, description: descriptionPrev, category: categoryPrev, featured: featuredPrev, $id: id } = blogUpdate[editID] || {};
+    const { postImageSrc: imagePrev, title: titlePrev, authorName: descriptionPrev, $id: id } = blogUpdate[galleryPostId] || {};
 
     const [image, setImage] = useState();
     const [title, setTitle] = useState(titlePrev || '');
     const [description, setDescription] = useState(descriptionPrev || '');
-    const [category, setCategory] = useState(categoryPrev || '');
-    const [Featured, setFeatured] = useState(featuredPrev || '');
 
     useEffect(() => {
         setTitle(titlePrev || '');
         setDescription(descriptionPrev || '');
-        setCategory(categoryPrev || '');
-        setFeatured(featuredPrev || '');
         setImage(imagePrev || '');
 
-    }, [titlePrev, descriptionPrev, categoryPrev, featuredPrev, imagePrev]);
+    }, [titlePrev, descriptionPrev, imagePrev]);
 
     window.onclick = function () { setModalDisplay(false); }
-
-    if (FeatureValue === "true") {
-        setFeatured(true)
-    }
-    if (FeatureValue === "false") {
-        setFeatured(false)
-    }
-    if (FeatureValue === "null") {
-        setFeatured(false)
-    }
-
-    const indianDate = new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour12: false, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    const currentDate = indianDate.format(new Date());
 
     const client = new Client();
     const databases = new Databases(client);
@@ -77,17 +59,14 @@ const BlogsUpdate = () => {
 
     const handleEditData = async () => {
         const formData = {
-            imageSrc: image ? image : imagePrev,
-            category: category ? category : categoryPrev,
+            postImageSrc: image ? image : imagePrev,
             title: title ? title : titlePrev,
-            featured: Featured ? Featured : featuredPrev,
-            description: description ? description : descriptionPrev,
-            date: currentDate
+            authorName: description ? description : descriptionPrev,
         };
 
         try {
             const fileId = ID.unique();
-            const promise = await databases.updateDocument('661d520b2995308dacf5', '6622c35bd517ac767979', id, formData);
+            const promise = await databases.updateDocument('661d520b2995308dacf5', '6620f74c1e7cbd18970e', id, formData);
             console.log('Data updated successfully!', promise);
             setModalDisplay(true)
             // Handle success, e.g., clear form, show success message
@@ -108,26 +87,6 @@ const BlogsUpdate = () => {
                         <h1>Click to Upload Image</h1>
                     </button>
                     <input type="text" name="title" value={title}  placeholder="Title" className="w-3/4 h-8 border-2 outline-none px-5 py-5 mt-3 rounded" onChange={(e) => setTitle(e.target.value)} />
-                    <div className="w-3/4 mt-3 flex justify-between">
-                        <div className="h-auto w-auto">
-                            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">Category</label>
-                            <select id="category" value={category} name="category" autoComplete="category-name" className="block w-64 mt-2 cursor-pointer rounded-md border-0 py-3 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" onChange={(e) => setCategory(e.target.value)}>
-                                <option>Lights</option>
-                                <option>Sound</option>
-                                <option>Announcement</option>
-                                <option>Inventory</option>
-                                <option>updates</option>
-                            </select>
-                        </div>
-                        <div className="h-auto w-auto">
-                            <label htmlFor="featured" className="block text-sm font-medium leading-6 text-gray-900">Featured</label>
-                            <select id="featured" value={Featured} name="featured" autoComplete="featured-option" className="block w-64 mt-2 cursor-pointer rounded-md border-0 py-3 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" onChange={(e) => setFeatureValue(e.target.value)}>
-                                <option>True</option>
-                                <option>False</option>
-                                <option>null</option>
-                            </select>
-                        </div>
-                    </div>
                     <div className="w-3/4 mt-3">
                         <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">Content</label>
                         <div className="mt-2">
@@ -142,7 +101,6 @@ const BlogsUpdate = () => {
                 <div className="w-1/2 h-full flex rounded justify-center items-center">
                     <div className="w-3/4 h-auto bg-white px-5 py-10 shadow-lg">
                         <img className="w-full h-64 bg-white object-cover " src={image || imagePrev} alt="" />
-                        <p className="mt-5">{currentDate}</p>
                         <h1  className="mt-5 text-2xl">{title || titlePrev}</h1>
                         {description.length > 200 ? (
                             <>
@@ -167,4 +125,4 @@ const BlogsUpdate = () => {
     )
 }
 
-export default BlogsUpdate
+export default GalleryUpdate

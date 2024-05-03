@@ -92,14 +92,15 @@ const PostsArray = Object.values(GalleryData.posts); // Spread the cards object 
 
   return (
     <Container>
-    <ContentWithPaddingXl>
+        
+       <ContentWithPaddingXl>
       <HeadingContainer>
         {GalleryData.subheading && <Subheading>{GalleryData.subheading}</Subheading>}
         {GalleryData.heading && <Heading>{GalleryData.heading}</Heading>}
         {GalleryData.escription && <Description>{GalleryData.description}</Description>}
       </HeadingContainer>
       <Posts>
-        {PostsArray.slice(0,3).map((post, index) => (
+        {PostsArray.map((post, index) => (
           <PostContainer featured={post.featured} key={index}>
             <Post className="group" >
               <PostImage imageSrc={post.postImageSrc} />

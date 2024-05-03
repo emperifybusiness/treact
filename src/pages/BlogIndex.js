@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../components/headers/light.js";
 import { fetchDataBlogs } from "components/cards/AppwriteData.js";
 import { useNumber } from './Context.js';
-
+import parse from 'html-react-parser';
 const HeadingRow = tw.div`flex`;
 const Heading = tw(SectionHeading)`text-gray-900`;
 const Posts = tw.div`mt-6 sm:-mr-8 flex flex-col`;
@@ -95,6 +95,7 @@ const BlogIndex = () => {
   const data = BlogPosts.posts[number]
 
 
+
   // const imageSrc = data.imageSrc;
   // const category = data.category;
   // const date = data.date;
@@ -118,10 +119,10 @@ const BlogIndex = () => {
                   <Info style={{ padding: "0", marginTop: "50px", }}>
                     <Category>{data.category}</Category>
                     <CreationDate>{new Intl.DateTimeFormat('en-IN', {
-                        year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
-                      }).format(new Date(data.date))}</CreationDate>
+                      year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'
+                    }).format(new Date(data.date))}</CreationDate>
                     <Title>{data.title}</Title>
-                    <Description>{data.description}</Description>
+                    <Description>{parse(data.description)}</Description>
                   </Info>
                 </Post>
               </PostContainer>

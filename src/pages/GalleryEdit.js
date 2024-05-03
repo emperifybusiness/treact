@@ -2,28 +2,28 @@ import Sidebar from 'Sidebar'
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import { Client, Databases } from "appwrite";
-import { fetchDataBlogs, client } from 'components/cards/AppwriteData';
+import { fetchDataGallery, client } from 'components/cards/AppwriteData';
 import { useNumber } from './Context';
 
-const BlogsEdit = () => {
+const GalleryEdit = () => {
     const databases = new Databases(client);
     const [data, setData] = useState([])
     const Navigate = useNavigate();
-    const { updateNumberEditID } = useNumber();
+    const { updateGalleryPostID } = useNumber(); 
 
     const handleDelete = async (id) => {
-        const promise = databases.deleteDocument('661d520b2995308dacf5', '6622c35bd517ac767979', id);
+        const promise = databases.deleteDocument('661d520b2995308dacf5', '6620f74c1e7cbd18970e', id);
     }
 
     useEffect(() => {
-        fetchDataBlogs().then(response => {
+        fetchDataGallery().then(response => {
             setData(response);
         });
     }, [handleDelete]);
 
     const handleEdit = (index) => {
-        Navigate('blogsupdate')
-        updateNumberEditID(index);
+        Navigate('GalleryUpdate')
+        updateGalleryPostID(index);
     }
 
     return (
@@ -33,8 +33,8 @@ const BlogsEdit = () => {
                 {data.map((blog, index) => (
                     <div key={index} className="w-[350px] h-auto flex rounded justify-center items-center">
                         <div className="w-[400px] h-auto bg-white px-5 py-10 shadow-lg">
-                            <img className="w-full h-48 bg-white object-cover " src={blog.imageSrc} alt="" />
-                            <p className="mt-2">{blog.date}</p>
+                            <img className="w-full h-48 bg-white object-cover " src={blog.postImageSrc} alt="" />
+                            <p className='mt-2'>{blog.authorName}</p>
                             <h1 className="mt-2 text-lg ">{blog.title.slice(0, 20) + "..."} </h1>
                             <div className="w-full flex mt-5 justify-between">
                                 <button className='py-2 px-6 rounded-md bg-yellow-400 hover:bg-blue-200 transition' onClick={() => handleEdit(index)}>Edit</button>
@@ -48,4 +48,4 @@ const BlogsEdit = () => {
     )
 }
 
-export default BlogsEdit
+export default GalleryEdit

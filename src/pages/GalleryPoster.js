@@ -5,31 +5,14 @@ import jquery from 'jquery';
 import { MdOutlineDoneOutline } from "react-icons/md";
 import "./BlogPoster.css"
 import parse from 'html-react-parser';
-const BlogPoster = () => {
+const GalleryPoster = () => {
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState(``);
-    const [category, setCategory] = useState("");
-    const [Featured, setFeatured] = useState(false);
-    const [FeatureValue, setFeatureValue] = useState("");
     const [ModalDisplay, setModalDisplay] = useState(false);
 
     window.onclick = function () { setModalDisplay(false); }
 
-    if (FeatureValue === "true") {
-        setFeatured(true)
-    }
-    if (FeatureValue === "false") {
-        setFeatured(false)
-    }
-    if (FeatureValue === "null") {
-        setFeatured(false)
-    }
-
-    const indianDate = new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour12: false, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    const currentDate = indianDate.format(new Date());
-
-    console.log(currentDate);
     const client = new Client();
     const databases = new Databases(client);
     const storage = new Storage(client);
@@ -55,17 +38,14 @@ const BlogPoster = () => {
 
     const handlePostData = async () => {
         const formData = {
-            imageSrc: image,
-            category: category,
+            postImageSrc: image,
             title: title,
-            featured: Featured,
-            description: description,
-            date: currentDate
+            authorName: description,
         };
 
         try {
             const fileId = ID.unique();
-            const promise = await databases.createDocument('661d520b2995308dacf5', '6622c35bd517ac767979', fileId, formData);
+            const promise = await databases.createDocument('661d520b2995308dacf5', '6620f74c1e7cbd18970e', fileId, formData);
             console.log('Data saved successfully!', promise);
             setModalDisplay(true)
             // Handle success, e.g., clear form, show success message
@@ -86,26 +66,6 @@ const BlogPoster = () => {
                         <h1>Click to Upload Image</h1>
                     </button>
                     <input type="text" name="title" id="" placeholder="Title" className="w-3/4 h-8 border-2 outline-none px-5 py-5 mt-3 rounded" onChange={(e) => setTitle(e.target.value)} />
-                    <div className="w-3/4 mt-3 flex justify-between">
-                        <div className="h-auto w-auto">
-                            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">Category</label>
-                            <select id="country" name="country" autoComplete="country-name" className="block w-64 mt-2 cursor-pointer rounded-md border-0 py-3 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" onChange={(e) => setCategory(e.target.value)}>
-                                <option>Lights</option>
-                                <option>Sound</option>
-                                <option>Announcement</option>
-                                <option>Inventory</option>
-                                <option>updates</option>
-                            </select>
-                        </div>
-                        <div className="h-auto w-auto">
-                            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">Featured</label>
-                            <select id="country" name="country" autoComplete="country-name" className="block w-64 mt-2 cursor-pointer rounded-md border-0 py-3 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" onChange={(e) => setFeatureValue(e.target.value)}>
-                                <option>True</option>
-                                <option>False</option>
-                                <option>null</option>
-                            </select>
-                        </div>
-                    </div>
                     <div className="w-3/4 mt-3">
                         <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">Content</label>
                         <div className="mt-2">
@@ -120,7 +80,7 @@ const BlogPoster = () => {
                 <div className="w-1/2 h-full flex rounded justify-center items-center">
                     <div className="w-3/4 h-auto bg-white px-5 py-10 shadow-lg">
                         <img className="w-full h-64 bg-white object-cover " src={image} alt="" />
-                        <p className="mt-5">{currentDate}</p>
+                    
                         <h1 className="mt-5 text-2xl">{title ? title : "Here's your title"}</h1>
                         {description.length > 200 ? (
                             <>
@@ -145,4 +105,4 @@ const BlogPoster = () => {
     )
 }
 
-export default BlogPoster;
+export default GalleryPoster;
