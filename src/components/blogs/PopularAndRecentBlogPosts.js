@@ -85,7 +85,7 @@ export default () => {
                     // variants={postBackgroundSizeAnimation}
                     $imageSrc={post.imageSrc}
                   />
-                  <Title className="">{post.title.substring(0, 20) + "..."}</Title>
+                  <Title className="">{post.title.substring(0, 37) + "..."}</Title>
                   <Description >{parse(post.description.substring(0,100))}...</Description>
                 </Post>
               ))}

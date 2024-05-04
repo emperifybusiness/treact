@@ -6,6 +6,9 @@ import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import InventoryCard from 'components/cards/InventoryCard';
+import Home from "../../videos/INVENTORY.mp4";
+import truss from "../../images/trusss.png"
+import "../../index.css"
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
@@ -47,7 +50,7 @@ const InventorySection = () => {
                 Blog
             </NavLink>
             <NavLink href="/gallery">
-               Gallery
+                Gallery
             </NavLink>
             <NavLink href="/AboutUs">
                 About us
@@ -62,21 +65,26 @@ const InventorySection = () => {
 
     return (
         <AnimationRevealPage>
-        <Container>
-            <OpacityOverlay />
-            <HeroContainer>
-                <StyledHeader links={navLinks} />
-                <Content>
-                    <Heading>
-                        EVERYTHING YOU NEED
-                        <br />
-                        AT ONE PLACE
-                    </Heading>
-                    <PrimaryAction>GET QUOTE</PrimaryAction>
-                </Content>
-            </HeroContainer>
-        </Container>
-        <InventoryCard />
+            <Container>
+                <OpacityOverlay />
+                <HeroContainer>
+                    <StyledHeader links={navLinks} />
+                    <Content>
+                        <video className="h-full" autoPlay loop muted src={Home}></video>
+                        <Heading>
+                            EVERYTHING YOU NEED
+                            <br />
+                            AT ONE PLACE
+                        </Heading>
+                        <PrimaryAction>GET QUOTE</PrimaryAction>
+                    </Content>
+                </HeroContainer>
+            </Container>
+            <div className="truss">
+                <img src={truss} alt="" srcset="" />
+            </div>
+            <InventoryCard />
+
         </AnimationRevealPage>
     )
 }

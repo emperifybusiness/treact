@@ -144,13 +144,13 @@ const TabCardGrid = () => {
               <CardContainer key={index}>
                 <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
                   <CardImageContainer imageSrc={card.imageSrc}>
-                    <CardRatingContainer>
+                    {/* <CardRatingContainer>
                       <CardRating>
                         <StarIcon />
                         {card.rating}
                       </CardRating>
                       <CardReview>({card.reviews})</CardReview>
-                    </CardRatingContainer>
+                    </CardRatingContainer> */}
                     {/* <CardHoverOverlay
                     variants={{
                       hover: {
