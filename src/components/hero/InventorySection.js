@@ -9,7 +9,7 @@ import InventoryCard from 'components/cards/InventoryCard';
 import Home from "../../videos/INVENTORY.mp4";
 import truss from "../../images/trusss.png"
 import "../../index.css"
-
+import { Client, Storage } from "appwrite";
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
   ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
@@ -40,7 +40,21 @@ const Heading = styled.h1`
 
 const PrimaryAction = tw.button`rounded-full px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 font-bold shadow transition duration-300 bg-blue-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:outline-none focus:shadow-outline`;
 
+
 const InventorySection = () => {
+
+// const client = new Client();
+
+// const storage = new Storage(client);
+
+// client
+//     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+//     .setProject('661d51c7e4d47fa7d45d') // Your project ID
+// ;
+
+// const Inventory = storage.getFileView('66361568003124745f89', '6636a555001bb4dd11d3');
+// console.log(Inventory);
+
     const navLinks = [
         <NavLinks key={1}>
             <NavLink href="/Inventory">
@@ -70,7 +84,9 @@ const InventorySection = () => {
                 <HeroContainer>
                     <StyledHeader links={navLinks} />
                     <Content>
-                        <video className="h-full" autoPlay loop muted src={Home}></video>
+                        <video className="h-full" autoPlay loop muted src={Home}>
+                            
+                        </video>
                         <Heading>
                             EVERYTHING YOU NEED
                             <br />
