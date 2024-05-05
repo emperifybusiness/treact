@@ -146,7 +146,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/AboutUs" element={<AboutUs />} />
 
-          {/* <Route element={<PrivateRoutes/>}> */}
+ 
           <Route path="/admin" element={<BlogPoster />} />
           <Route path="/GalleryEdit" element={<GalleryEdit />} />
           <Route path="/GalleryPoster" element={<GalleryPoster />} />
@@ -156,7 +156,6 @@ export default function App() {
           <Route path="/InventoryAdmin" element={<InventoryEdit />} />
           <Route path="/InventoryPost" element={<InventoryPost />} />
           <Route path="/InventoryAdmin/InventoryUpdate" element={<InventoryUpdate />} />
-          {/* </Route> */}
         </Routes>
       </Router>
     </>
