@@ -1,6 +1,6 @@
 .logo {
-  width: 100px !important;
-  height: 50px !important;
+  min-width: 100px !important;
+  min-height: 50px !important;
 }
 .lmezXe img {
   margin-right: 0.75rem;
