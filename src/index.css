@@ -2,6 +2,7 @@
   min-width: 100px !important;
   min-height: 50px !important;
 }
+
 .lmezXe img {
   margin-right: 0.75rem;
   width: 9.5rem !important;
@@ -51,4 +52,9 @@ video {
   min-width: 100%;
   object-fit: cover;
   z-index: -100;
+}
+.eMBGtn img {
+  margin-right: 0.75rem;
+  min-width: 100px !important;
+  min-height: 50px !important;
 }
