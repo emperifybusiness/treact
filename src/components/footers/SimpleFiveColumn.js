@@ -44,7 +44,7 @@ export default () => {
             <LogoText>Cas Ant Events Pvt Ltd</LogoText>
           </LogoContainer>
           <CompanyDescription>
-            Creating your events is as easy as 1 2 3 .
+            Creating your events is as easy as 1 2 3.
           </CompanyDescription>
           <SocialLinksContainer>
             <SocialLink href="https://facebook.com">
