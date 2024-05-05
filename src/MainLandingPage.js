@@ -25,7 +25,7 @@ export default () => (
     <Blog />
     <Planner />
     <Testimonial />
-    <ContactUsForm />
+    {/* <ContactUsForm /> */}
     <Footer />
   </AnimationRevealPage>
 );
