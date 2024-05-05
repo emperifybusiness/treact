@@ -11,11 +11,12 @@ import ContactUsForm from "components/forms/TwoColContactUsWithIllustration";
 import truss from "./images/trusss.png"
 import Card from "components/cards/TabCardGrid";
 import Footer from "components/footers/SimpleFiveColumn.js";
+import DevelopmentMessage from "DevelopmentMessage";
 
 
 export default () => (
   <AnimationRevealPage>
-    <Hero />
+    {/* <Hero />
     <div className="truss">
       <img src={truss} alt="" srcset="" />
     </div>
@@ -25,7 +26,8 @@ export default () => (
     <Blog />
     <Planner />
     <Testimonial />
-    {/* <ContactUsForm /> */}
-    <Footer />
+    
+    <Footer /> */}
+    <DevelopmentMessage />
   </AnimationRevealPage>
 );
