@@ -2,11 +2,11 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-
+import { FaInstagram } from "react-icons/fa";
 import LogoImage from "../../images/LOGO REAL.png";
 import { ReactComponent as FacebookIcon } from "../../images/facebook-icon.svg";
-import { ReactComponent as TwitterIcon } from "../../images/twitter-icon.svg";
 import { ReactComponent as YoutubeIcon } from "../../images/youtube-icon.svg";
+import { ReactComponent as Linkedin } from "../../images/linkedin-icon.svg";
 
 const Container = tw.div`relative bg-gray-200 -mx-8 -mb-8 px-8`;
 const FiveColumns = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20 flex flex-wrap justify-between`;
@@ -21,8 +21,8 @@ const LinkListItem = tw.li`mt-3`;
 const Link = tw.a`border-b-2 border-transparent hocus:text-primary-500 hocus:border-primary-500 pb-1 transition duration-300`;
 
 const LogoContainer = tw.div`flex items-center justify-center md:justify-start`;
-const LogoImg = tw.img`w-8`;
-const LogoText = tw.h5`ml-2 text-xl font-black text-primary-500`;
+
+const LogoText = tw.h5` text-2xl font-black text-primary-500`;
 
 const CompanyDescription = tw.p`mt-4 max-w-xs font-medium text-sm mx-auto md:mx-0 md:mr-4 `;
 
@@ -40,21 +40,23 @@ export default () => {
       <FiveColumns>
         <WideColumn>
           <LogoContainer>
-            <LogoImg src={LogoImage} />
             <LogoText>Cas Ant Events Pvt Ltd</LogoText>
           </LogoContainer>
           <CompanyDescription>
-            Creating your events is as easy as 1 2 3.
+            Creating memories since 1998, All over Goa. Specialized in Light , Sound & Production.
           </CompanyDescription>
           <SocialLinksContainer>
-            <SocialLink href="https://facebook.com">
+            <SocialLink href="https://www.facebook.com/profile.php?id=100063716452803">
               <FacebookIcon />
             </SocialLink>
-            <SocialLink href="https://twitter.com">
-              <TwitterIcon />
+            <SocialLink href="https://www.instagram.com/casantevents.goa/">
+              <FaInstagram />
             </SocialLink>
-            <SocialLink href="https://youtube.com">
+            <SocialLink href="https://www.youtube.com/channel/UCLs9_gDMmkTQelB27W3C8cA">
               <YoutubeIcon />
+            </SocialLink>
+            <SocialLink href="https://www.linkedin.com/company/cas-ant-events-private-limited/mycompany/">
+              <Linkedin />
             </SocialLink>
           </SocialLinksContainer>
         </WideColumn>
@@ -62,16 +64,16 @@ export default () => {
           <ColumnHeading>Quick Links</ColumnHeading>
           <LinkList>
             <LinkListItem>
-              <Link href="#">Blog</Link>
+              <Link href="/blogs">Blog</Link>
             </LinkListItem>
             <LinkListItem>
-              <Link href="#">FAQs</Link>
+              <Link href="/Gallery">Gallery</Link>
             </LinkListItem>
             <LinkListItem>
-              <Link href="#">Support</Link>
+              <Link href="/Inventory">Inventory</Link>
             </LinkListItem>
             <LinkListItem>
-              <Link href="#">About Us</Link>
+              <Link href="/AboutUs">About Us</Link>
             </LinkListItem>
           </LinkList>
         </Column>

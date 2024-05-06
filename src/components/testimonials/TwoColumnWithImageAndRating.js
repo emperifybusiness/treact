@@ -17,7 +17,7 @@ const ImageColumn = tw(Column)`md:w-5/12 xl:w-6/12 flex-shrink-0 relative`;
 const TextColumn = styled(Column)(props => [
   tw`md:w-7/12 xl:w-6/12 mt-16 md:mt-0`,
   props.textOnLeft ? tw`md:pr-12 lg:pr-16 md:order-first` : tw`md:pl-12 lg:pl-16 md:order-last`
-]);
+])
 
 const Image = styled.img(props => [
   props.imageRounded && tw`rounded`,

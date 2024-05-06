@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo {
-  min-width: 200px !important;
-  min-height: 70px !important;
-}
-
 .lmezXe img {
   margin-right: 0.75rem;
   width: 9.5rem !important;
@@ -61,4 +56,10 @@ video {
   margin-right: 0.75rem;
   min-width: 120px !important;
   min-height: 50px !important;
+}
+.dyYDeT {
+  color: rgb(0, 162, 237);
+}
+.jwdah {
+  background: rgb(0, 162, 237) !important;
 }

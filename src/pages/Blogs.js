@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 import Header from "components/headers/light.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
+import Footer from "components/footers/SimpleFiveColumn.js";
 import { SectionHeading } from "components/misc/Headings";
 import { PrimaryButton } from "components/misc/Buttons";
 import { fetchDataBlogs } from "components/cards/AppwriteData";

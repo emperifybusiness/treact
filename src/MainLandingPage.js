@@ -16,7 +16,7 @@ import DevelopmentMessage from "DevelopmentMessage";
 
 export default () => (
   <AnimationRevealPage>
-    {/* <Hero />
+    <Hero />
     <div className="truss">
       <img src={truss} alt="" srcset="" />
     </div>
@@ -27,7 +27,7 @@ export default () => (
     <Planner />
     <Testimonial />
     
-    <Footer /> */}
-    <DevelopmentMessage />
+    <Footer />
+    {/* <DevelopmentMessage /> */}
   </AnimationRevealPage>
 );

@@ -28,24 +28,24 @@ export default ({
   testimonials = [
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
+        "https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-      customerName: "Charlotte Hale"
+        "Casant Events made our wedding magical with their beautiful decorations and top notch sound system. They truly exceeded our expectations. well done and Thank you for the efforts",
+      customerName: "Tushar"
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
+        "https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-      customerName: "Adam Cuppy"
+        "Impressed with Casant Events professionalism and attention to detail. The ambience was given properly and many people liked it too, my guests loved the event vibes, thanks casant.",
+      customerName: "Ronan"
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1580852300654-03c803a14e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4.25&w=512&h=512&q=80",
+        "https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-      customerName: "Steven Marcetti"
+        "Casant Events transformed our event into a mesmerizing experience! The lighting, sound, and production was smoothly done and managed professionally, It is Highly recommended!",
+      customerName: "Jose"
     }
   ]
 }) => {

@@ -3,6 +3,7 @@ import "./Inventory.css";
 import tw from "twin.macro";
 import styled from "styled-components";
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
+import Footer from "../../components/footers/SimpleFiveColumn.js";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import InventoryCard from 'components/cards/InventoryCard';
@@ -100,7 +101,7 @@ const InventorySection = () => {
                 <img src={truss} alt="" srcset="" />
             </div>
             <InventoryCard />
-
+           <Footer />
         </AnimationRevealPage>
     )
 }

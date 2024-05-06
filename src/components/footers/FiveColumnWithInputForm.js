@@ -55,16 +55,16 @@ export default () => {
             <ColumnHeading>Main</ColumnHeading>
             <LinkList>
               <LinkListItem>
-                <Link href="#">Blog</Link>
+                <Link href="/blogs">Blog</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">FAQs</Link>
+                <Link href="/gallery">Gallery</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">Support</Link>
+                <Link href="/Inventory">Inventory</Link>
               </LinkListItem>
               <LinkListItem>
-                <Link href="#">About Us</Link>
+                <Link href="/AboutUs">About Us</Link>
               </LinkListItem>
             </LinkList>
           </Column>
