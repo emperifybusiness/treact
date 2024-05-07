@@ -7,7 +7,6 @@ import Footer from "../../components/footers/SimpleFiveColumn.js";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import InventoryCard from 'components/cards/InventoryCard';
-import Home from "../../videos/INVENTORY.mp4";
 import truss from "../../images/trusss.png"
 import "../../index.css"
 import { Client, Storage } from "appwrite";
@@ -85,7 +84,7 @@ const InventorySection = () => {
                 <HeroContainer>
                     <StyledHeader links={navLinks} />
                     <Content>
-                        <video className="h-full" autoPlay loop muted src={Home}>
+                        <video className="h-full" autoPlay loop muted>
                             
                         </video>
                         <Heading>
