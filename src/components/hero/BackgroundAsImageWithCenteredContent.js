@@ -65,7 +65,6 @@ export default () => {
       <OpacityOverlay />
       <HeroContainer>
         <StyledHeader links={navLinks} />
-        
         <Content>
         <video className="h-full" autoPlay loop muted src={Home}>
         </video>
