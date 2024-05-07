@@ -24,7 +24,7 @@ const StyledHeader = styled(Header)`
 const PrimaryLink = tw(PrimaryLinkBase)`rounded-full`
 const Container = styled.div`
   ${tw`relative -mx-8 -mt-8 bg-center bg-cover h-screen min-h-144`}
-  background-image: url("../../images/sasas.jpg");
+  background-image: url("https://cloud.appwrite.io/v1/storage/buckets/6620f76347a6c75a350d/files/663a61d40036c786e874/view?project=661d51c7e4d47fa7d45d&mode=admin");
 `;
 
 const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-black opacity-75`;
