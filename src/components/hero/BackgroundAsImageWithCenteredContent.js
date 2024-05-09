@@ -2,7 +2,7 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; 
-import Home from "../../videos/7mb.mp4";
+// import Home from "../../videos/7mb.mp4";
 
 import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 
@@ -66,8 +66,27 @@ export default () => {
       <HeroContainer>
         <StyledHeader links={navLinks} />
         <Content>
-        <video className="h-full" autoPlay loop muted src={Home}>
-        </video>
+        <video 
+        id="b9561b64-3c61-c5c4-9ac2-44c901e131c6-video"
+        className="h-full"
+        autoplay=""
+        loop=""
+        style="
+          background-image: url('https://assets-global.website-files.com/66041c667295e18e3d1ff479/663c3d605103bbec9e5d07fd_7mb(home)-poster-00001.jpg');
+        "
+        muted=""
+        playsinline=""
+        data-wf-ignore="true"
+        data-object-fit="cover"
+      >
+        <source
+          src="https://assets-global.website-files.com/66041c667295e18e3d1ff479/663c3d605103bbec9e5d07fd_7mb(home)-transcode.mp4"
+          data-wf-ignore="true"
+        />
+        <source
+          src="https://assets-global.website-files.com/66041c667295e18e3d1ff479/663c3d605103bbec9e5d07fd_7mb(home)-transcode.webm"
+          data-wf-ignore="true"
+        /></video>
           <Heading>
             PLAN YOUR EVENTS
             <br />
