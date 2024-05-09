@@ -69,12 +69,9 @@ export default () => {
         <video 
         id="b9561b64-3c61-c5c4-9ac2-44c901e131c6-video"
         className="h-full"
-        autoplay=""
-        loop=""
-        style="
-          background-image: url('https://assets-global.website-files.com/66041c667295e18e3d1ff479/663c3d605103bbec9e5d07fd_7mb(home)-poster-00001.jpg');
-        "
-        muted=""
+        autoplay="true"
+        loop="true"
+        muted="true"
         playsinline=""
         data-wf-ignore="true"
         data-object-fit="cover"
